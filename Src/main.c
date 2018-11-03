@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "functions.c"
 
 int main()
 {    
 	// Se declaran las variables que se van a utilizar
-    char nombre[25];
-    int opcion;
+    char name[25];
+    int option;
     Matriz* matriz;
     matriz = NULL; // Se inicializa la matriz como nula
  
@@ -14,19 +15,21 @@ int main()
     {
         printf( "\n   1. Leer archivo");
         printf( "\n   2. Realizar busqueda de camino minimo");
-        printf( "\n   3. Creditos" );
-        printf( "\n   4. Salir" );
-        printf( "\n\n   Introduzca opcion (1-4): ");
+        printf( "\n   3. Crear archivo de salida");
+        printf( "\n   4. Creditos" );
+        printf( "\n   5. Salir" );
+        printf( "\n\n   Introduzca opcion (1-5): ");
 
-        scanf( "%d", &opcion );
+        scanf( "%d", &option );
 
         /* Inicio del anidamiento */
 
-        switch ( opcion )
+        switch ( option )
         {
             case 1: printf("Ingrese nombre del archivo a leer\n");
-                    scanf("%s",nombre); // Se carga el nombre del archivo
-                    matriz = cargar(nombre); // Se lee el archivo y se almacena en memoria el grafo
+                    scanf("%s",name); // Se carga el nombre del archivo
+                    matriz = loadMatriz(name); // Se lee el archivo y se almacena en memoria el grafo
+                    //print(matriz);
                     break;              
 
             case 2: if (matriz != NULL)
@@ -36,14 +39,21 @@ int main()
                    	 	break;
                    	}
                     printf("Primero debe cargar alguna matriz, elegir opcion 1 \n");
-                    break;                   	
+                    break;     
 
-            case 3: printf(" * Autor: CRISTIAN EDUARDO ESPINOZA SILVA \n ");
+            case 3: if (matriz != NULL)
+                    {
+                       // crear archivo de salida
+                    }
+                    printf("Primero debe cargar alguna matriz, elegir opcion 1 \n");
+                    break;           	
+
+            case 4: printf(" * Autor: CRISTIAN EDUARDO ESPINOZA SILVA \n ");
                     printf(" * Universidad santiago de chile \n");
                     break;
         }
 
-    }while(opcion!=4);
+    }while(option != 5);
 
     return 0;
 }

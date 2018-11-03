@@ -6,27 +6,30 @@
 
 typedef struct Nodo
 {
-	int origen;
-	int destino;
-	int peso;
+	int origin;
+	int destination;
+	int weight;
+	//Lista* listaNodos; // Lista que almacena el camino que se realiza para llegar al destino final 
 }Nodo;
 
-typedef struct Lista
+typedef struct List
 {
-	int largo;
+	int length;
 	Nodo* nodo;
 }Lista;
 
 typedef struct Matriz
 {
-	int numeroDeNodos;
-	int** adyacencia;
-	Lista* listaNodos;
-	int entrada;
-	int llave;
-	int salida;
+	int numbersNodo;
+	int** adjacency;
+	Lista* listNodos;
 }Matriz;
 
 // Definimos las funciones que se van a utilizar dentro del codigo 
 
-Matriz *cargar(char nombre[]);
+Matriz *loadMatriz(char nombre[]);
+void print(Matriz *matriz);
+Lista* addNodo(Lista* lista , Nodo* aux);
+Nodo* createNodo(int peso, int origen, int destino);
+Lista* createList();
+Matriz* createBoard(int numeroDeNodos);
