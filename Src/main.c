@@ -43,7 +43,7 @@ int main()
 
             case 3: if (matriz != NULL)
                     {
-                       // crear archivo de salida
+                       //outputFileMatriz();
                     }
                     printf("Primero debe cargar alguna matriz, elegir opcion 1 \n");
                     break;           	

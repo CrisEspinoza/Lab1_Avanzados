@@ -2,6 +2,40 @@
 #include <string.h>
 #include "../Include/struct.h"
 
+
+
+
+
+// ******************   Funciones principales  ******************//
+
+Matriz* createBoard(int numbersNodo)
+{
+    int i,j;
+    // Procedemos a crear una variable de tipo Tablero y a solicitar memoria para dicha variable
+    Matriz *matriz;
+    matriz = (Matriz*)malloc(sizeof(Matriz));
+
+    matriz->adjacency = (int**)malloc(numbersNodo*sizeof(int*)); // Inicializamos una de variables que contiene nuestra estructura con tantas filas diga el file
+    matriz->numbersNodo = numbersNodo;
+
+    for (i = 0 ; i < numbersNodo ;i++)
+    {
+        matriz->adjacency[i] = (int*)malloc(numbersNodo*sizeof(int)); // Aca inicializamos las columnas que rescatamos desde el file
+
+        for (j = 0;  j < numbersNodo ;j++)
+        {
+            matriz->adjacency[i][j] = 0; // Asignamos un elemento neutro que demostrara que el tablero esta creado pero no utilizado 
+        }
+    }
+    return matriz; // retornamos el tablero inicilizado (con elemento que representa estar vacio)
+}
+
+
+
+
+
+// ******************   Funciones para realizar escritura y lectura de archivos  ******************//
+
 Matriz* loadMatriz (char nombre[])
 {
 	FILE *file; // Declaramos un puntero File para poder leer el file de entrada.
@@ -51,49 +85,38 @@ Matriz* loadMatriz (char nombre[])
 
 }
 
-void print(Matriz *matriz)
+void outputFileMatriz (List* minimalRoute, int totalWeight)
 {
-    for (int i = 0; i < matriz->numbersNodo; i++)
+    FILE *outputFile;  // Incialzamos una variable de tipo FILE para poder trabajar con los archivos
+    int i;
+
+    outputFile = fopen("Salida.out", "a"); // Abrimos el archivo en modo sobreescritura, para no perder el camino anterior que esta en el archivo
+    fprintf(outputFile,"\n");
+    fprintf(outputFile,"La distancia recorrida es: %d",totalWeight); // Se coloca el peso total ocupado en la ruta minima obtenida y se pone en el archivo
+	fprintf(outputFile, "\n"); // S ehace un salto de linea en ele archio
+    fprintf(outputFile, "\n"); // S ehace un salto de linea en ele archio
+    
+    for (i = minimalRoute->length-1 ; i >= 0 ; i--)
     {
-        for (int j = 0; j < matriz->numbersNodo; j++)
-        {
-            printf("%d  ", matriz->adjacency[i][j]); //Imprimos por pantalla cada una de las caracteristicas que guarda dentro de si el tablero
-        }
-        printf("\n");
+    	if (i == 0)
+    		fprintf(outputFile,"%d ",minimalRoute->nodo[i].destination); // Se escribe la ruta minima en el archivo
+    	else
+    		fprintf(outputFile,"%d - ",minimalRoute->nodo[i].destination); // Se escribe la ruta minima en el archivo
     }
 
-    for (int j = 0; j < matriz->listNodos->length; j++)
-    {
-        // Mostramos por pantalla detalladamente cada uno de los valores que contiene la lista
-    	printf("Entrada es: %d , la llave es: %d y la salida es: %d \n",matriz->listNodos->nodo[j].origin,matriz->listNodos->nodo[j].destination,matriz->listNodos->nodo[j].weight);
-    }   
+    fclose(outputFile); // Cerramos el archivo
 }
 
-Matriz* createBoard(int numbersNodo)
+
+
+
+
+
+// ******************   Funciones para trabajar listas de nodos   ******************//
+
+List* createList() // Creamos la lista nueva 
 {
-    int i,j;
-    // Procedemos a crear una variable de tipo Tablero y a solicitar memoria para dicha variable
-    Matriz *matriz;
-    matriz = (Matriz*)malloc(sizeof(Matriz));
-
-    matriz->adjacency = (int**)malloc(numbersNodo*sizeof(int*)); // Inicializamos una de variables que contiene nuestra estructura con tantas filas diga el file
-    matriz->numbersNodo = numbersNodo;
-
-    for (i = 0 ; i < numbersNodo ;i++)
-    {
-        matriz->adjacency[i] = (int*)malloc(numbersNodo*sizeof(int)); // Aca inicializamos las columnas que rescatamos desde el file
-
-        for (j = 0;  j < numbersNodo ;j++)
-        {
-            matriz->adjacency[i][j] = 0; // Asignamos un elemento neutro que demostrara que el tablero esta creado pero no utilizado 
-        }
-    }
-    return matriz; // retornamos el tablero inicilizado (con elemento que representa estar vacio)
-}
-
-Lista* createList() // Creamos la lista nueva 
-{
-    Lista* list = (Lista*)malloc(sizeof(Lista)); // Pedimos memoria para la nueva lista 
+    List* list = (List*)malloc(sizeof(List)); // Pedimos memoria para la nueva lista 
     list->nodo = NULL;
     list->length = 0 ; // El length de la lista es igual a "0".
     return list; // Se retorna la lista creada
@@ -111,7 +134,7 @@ Nodo* createNodo(int weight, int origin, int destination)
     return newNodo; // Se retorna el nuevo nodo creado
 }
 
-Lista* addNodo(Lista* list , Nodo* auxiliary)
+List* addNodo(List* list , Nodo* auxiliary)
 {
     if(list->length == 0)
     {
@@ -125,4 +148,44 @@ Lista* addNodo(Lista* list , Nodo* auxiliary)
     }
     list->length++; // aumnetamos el length de la list de arreglos
     return list;
+}
+
+
+
+
+
+
+// ******************   Funciones para realizar eventos I/O   ******************//
+
+void print(Matriz *matriz)
+{
+    for (int i = 0; i < matriz->numbersNodo; i++)
+    {
+        for (int j = 0; j < matriz->numbersNodo; j++)
+        {
+            printf("%d  ", matriz->adjacency[i][j]); //Imprimos por pantalla cada una de las caracteristicas que guarda dentro de si el tablero
+        }
+        printf("\n");
+    }
+
+    for (int j = 0; j < matriz->listNodos->length; j++)
+    {
+        // Mostramos por pantalla detalladamente cada uno de los valores que contiene la lista
+    	printf("Entrada es: %d , la salida es: %d y el peso es : %d \n",matriz->listNodos->nodo[j].origin,matriz->listNodos->nodo[j].destination,
+    		matriz->listNodos->nodo[j].weight);
+    }   
+}
+
+void printCurrent(Nodo* nodo)
+{
+	printf("\n");
+	printf("******* *******\n");
+	printf("\n");
+	printf("Nodo actual: %d \n", nodo->origin);
+	printf("Nodo de destino: %d \n", nodo->destination );
+	printf("Costo de viaje: %d\n", nodo->weight);
+	//printf("Camino actual: \n", );
+	printf("\n");
+	printf("******* *******\n");
+	printf("\n");
 }

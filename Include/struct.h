@@ -1,4 +1,5 @@
 // Se importan las cosas que ayudaran al funcionamiento del codigo 
+
 #include <stdio.h>
 #include <string.h>
 
@@ -16,20 +17,21 @@ typedef struct List
 {
 	int length;
 	Nodo* nodo;
-}Lista;
+}List;
 
 typedef struct Matriz
 {
 	int numbersNodo;
 	int** adjacency;
-	Lista* listNodos;
+	List* listNodos;
 }Matriz;
 
 // Definimos las funciones que se van a utilizar dentro del codigo 
 
 Matriz *loadMatriz(char nombre[]);
-void print(Matriz *matriz);
-Lista* addNodo(Lista* lista , Nodo* aux);
-Nodo* createNodo(int peso, int origen, int destino);
-Lista* createList();
 Matriz* createBoard(int numeroDeNodos);
+List* addNodo(List* lista , Nodo* aux);
+List* createList();
+Nodo* createNodo(int peso, int origen, int destino);
+void print(Matriz *matriz);
+void outputFileMatriz (List* minimalRoute, int totalWeight);
