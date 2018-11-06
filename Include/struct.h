@@ -1,7 +1,5 @@
-// Se importan las cosas que ayudaran al funcionamiento del codigo 
-
-#include <stdio.h>
-#include <string.h>
+# ifndef STRUCT_H
+# define STRUCT_H
 
 // Definimos las estructuras a ocupar dentro de la aplicacion
 
@@ -16,6 +14,7 @@ typedef struct Matriz
 	int numbersNodo;
 	int** adjacency;
 	List* listPath;
+	int minimoPeso;
 }Matriz;
 
 // Definimos las funciones que se van a utilizar dentro del codigo 
@@ -27,4 +26,7 @@ int viewNumber (int numero, int listNumbers[], int largo);
 int factorial(int numero);
 void reiniciarList (int listNumbers[], int largo);
 int revisarListaFinal (Matriz* matriz, int listCaminos[], int fin);
-void saveTablero (Matriz* matriz, int pesoTotalMinimo);
+void saveTablero (Matriz* matriz);
+Matriz*  bruteForce (Matriz* matriz) ;
+
+# endif

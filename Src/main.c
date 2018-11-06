@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "functions.c"
+#include "../Include/struct.h"
 
 int main()
 {    
@@ -16,10 +16,9 @@ int main()
         printf( "\n   1. Leer archivo");
         printf( "\n   2. Realizar busqueda de camino minimo");
         printf( "\n   3. Crear archivo de salida");
-        printf( "\n   4. Reiniciar" );
-        printf( "\n   5. Creditos" );
-        printf( "\n   6. Salir" );
-        printf( "\n\n   Introduzca opcion (1-6): ");
+        printf( "\n   4. Creditos" );
+        printf( "\n   5. Salir" );
+        printf( "\n\n   Introduzca opcion (1-5): ");
 
         scanf( "%d", &option );
 
@@ -42,43 +41,30 @@ int main()
                     break;              
 
             case 2: system("clear");
-                    if (matriz != NULL)
+                    if (matriz != NULL && flag == 1)
             		{
-                        printf("Cantidad de nodos = %d \n", matriz->numbersNodo);
-                        bruteForce(matriz);
-            			//buscarCaminoMinomo(matriz); // Se busca el camino hacia la llave
-            			//printf("Camino minimo  hacia la Llave encontrado , archivo generado\n");
-                   	 	break;
+                        matriz = bruteForce(matriz);
+            			break;
                    	}
                     printf("Primero debe cargar alguna matriz, elegir opcion 1 \n");
                     break;     
 
             case 3: system("clear");
-                    if (matriz != NULL)
+                    if (matriz != NULL && flag == 1)
                     {
-                       //outputFileMatriz();
+                       saveTablero(matriz);
+                       break;
                     }
                     printf("Primero debe cargar alguna matriz, elegir opcion 1 \n");
                     break;           	
 
             case 4: system("clear");
-                    if(flag == 0)
-                    {
-                        printf("Debe ocupar al menos en una oportunidad el programa para poder reiniciarlo\n");
-                        break;
-                    }
-                    printf("Programa reiniciado\n");
-                    flag = 0;
-                    free(matriz);
-                    break;
-
-            case 5: system("clear");
                     printf(" * Autor: CRISTIAN EDUARDO ESPINOZA SILVA \n ");
                     printf(" * Universidad santiago de chile \n");
                     break;
         }
 
-    }while(option != 6);
+    }while(option != 5);
 
     return 0;
 }
