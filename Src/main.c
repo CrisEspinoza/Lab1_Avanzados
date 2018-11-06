@@ -34,7 +34,8 @@ int main()
                         scanf("%s",name); // Se carga el nombre del archivo
                         matriz = loadMatriz(name); // Se lee el archivo y se almacena en memoria el grafo
                         //print(matriz);
-                        flag = 1 ;
+                        if (matriz != NULL)
+                            flag = 1 ;
                         break;
                     }
                     printf("Ya abrio un archivo reinicie el programa antes de cargar un nuevo archivo\n");
@@ -43,6 +44,8 @@ int main()
             case 2: system("clear");
                     if (matriz != NULL)
             		{
+                        printf("Cantidad de nodos = %d \n", matriz->numbersNodo);
+                        bruteForce(matriz);
             			//buscarCaminoMinomo(matriz); // Se busca el camino hacia la llave
             			//printf("Camino minimo  hacia la Llave encontrado , archivo generado\n");
                    	 	break;
