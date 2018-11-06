@@ -58,10 +58,11 @@ void saveTablero (Matriz* matriz)
             for (j = 0; j < matriz->numbersNodo; j++)
             {
                 if (j == (matriz->numbersNodo-1))
-                    fprintf(txt, " %d \n", matriz->listPath[i].path[j]);
+                    fprintf(txt, " %d", matriz->listPath[i].path[j]);
                 else
                     fprintf(txt, " %d -", matriz->listPath[i].path[j]);
             }
+            break;
         }
     }
 
