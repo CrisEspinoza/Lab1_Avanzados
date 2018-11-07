@@ -4,6 +4,7 @@
 #include "../Include/struct.h"
 
 //#define DEBUG
+
 // **************** Funciones auxiliares ******************
 
 void printCurrent(Matriz* matriz)
