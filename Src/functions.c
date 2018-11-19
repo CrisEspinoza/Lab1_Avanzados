@@ -7,6 +7,14 @@
 
 // ****************** Funcion principal ******************//
 
+/* 
+Entrada: Recibe una matriz.
+Procedimiento: Se encarga de verificar cada uno de los caminos posibles que se puede tener, ademas de calcular cada uno de sus pesos, ademas por ultimo
+se encarga de verificar cual de todo los caminos gentrados cumple con la condicion de camino minomo.
+Salida: ntrega una matriz, con la obtencion de cada uno de los caminos generados con su recpectivo peso, ademas de tener en cuenta el camino que
+consta con el camino minimo.
+*/
+
 Matriz*  bruteForce (Matriz* matriz)
 {
     int i,j,combinacion = factorial(matriz->numbersNodo),sumWeigth = 0,minimo = 0;

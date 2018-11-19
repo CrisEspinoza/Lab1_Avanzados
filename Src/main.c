@@ -16,9 +16,10 @@ int main()
         printf( "\n   1. Leer archivo");
         printf( "\n   2. Realizar busqueda de camino minimo");
         printf( "\n   3. Crear archivo de salida");
-        printf( "\n   4. Creditos" );
-        printf( "\n   5. Salir" );
-        printf( "\n\n   Introduzca opcion (1-5): ");
+        printf( "\n   4. Reiniciar Programa (Liberar memoria) ");
+        printf( "\n   5. Creditos" );
+        printf( "\n   6. Salir" );
+        printf( "\n\n   Introduzca opcion (1-6): ");
 
         scanf( "%d", &option );
 
@@ -56,15 +57,20 @@ int main()
                        break;
                     }
                     printf("Primero debe cargar alguna matriz, elegir opcion 1 \n");
-                    break;           	
+                    break;
 
             case 4: system("clear");
+                    freeMemory (matriz);
+                    flag = 0;
+                    break;
+
+            case 5: system("clear");
                     printf(" * Autor: CRISTIAN EDUARDO ESPINOZA SILVA \n ");
                     printf(" * Universidad santiago de chile \n");
                     break;
         }
 
-    }while(option != 5);
+    }while(option != 6);
 
     return 0;
 }

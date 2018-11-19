@@ -29,6 +29,7 @@ void reiniciarList (int listNumbers[], int largo);
 int revisarListaFinal (Matriz* matriz, int listCaminos[], int fin);
 void saveTablero (Matriz* matriz);
 Matriz*  bruteForce (Matriz* matriz);
+void freeMemory(Matriz* matriz);
 
 // Permutacion
 int permutacion(Matriz* matriz);
