@@ -26,9 +26,10 @@ Matriz* createBoard(int numbersNodo)
 
 void printBoard(Matriz *matriz)
 {
-    for (int i = 0; i < matriz->numbersNodo; i++)
+    int i,j;
+    for (i = 0; i < matriz->numbersNodo; i++)
     {
-        for (int j = 0; j < matriz->numbersNodo; j++)
+        for (j = 0; j < matriz->numbersNodo; j++)
             printf("%d  ", matriz->adjacency[i][j]); //Imprimos por pantalla cada una de las caracteristicas que guarda dentro de si el tablero
         
         printf("\n");
