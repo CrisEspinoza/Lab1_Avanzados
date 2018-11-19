@@ -1,0 +1,14 @@
+
+
+# Lab 1. Cristian Eduardo Espinoza Silva
+
+
+ * Para ejecutar debe ejecutar el makefile, colocando en la consola lo siguiente:
+	make
+ * En una segunda instancia, debe dirigirse a la carpeta Bin y ejecutar el ejecutable creado
+	1. DIrigirse a la carpeta Bin : cd Bin
+	2. Ejecutar el siguiente comando: gcc main.c -o ejecutable
+	3. ./ejecutable
+ * El archivo sera creado en la carpeta Out
+	1. Para verificar la salida debe dirigirse a la carpeta Out : cd Out
+	2. Luego debe abrir el archivo creado que contendra la solucion.
